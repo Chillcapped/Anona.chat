@@ -1,37 +1,30 @@
 {
-  "name": "vector-web",
+  "name": "anona.chat",
   "version": "0.1.2",
-  "description": "Vector webapp",
-  "author": "matrix.org",
+  "description": "Anona.chat Web Client",
+  "author": "cripy",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vector-im/vector-web"
-  },
-  "license": "Apache-2.0",
-  "style": "bundle.css",
-  "scripts": {
-    "reskindex": "reskindex vector -h src/skins/vector/header",
-    "build:css": "catw \"src/skins/vector/css/**/*.css\" -o vector/bundle.css -c uglifycss --no-watch",
-    "build:compile": "babel --source-maps -d lib src",
-    "build:bundle": "NODE_ENV=production webpack -p lib/vector/index.js vector/bundle.js",
-    "build": "npm run build:css && npm run build:compile && npm run build:bundle",
-    "start:js": "webpack -w src/vector/index.js vector/bundle.js",
-    "start:skins:css": "catw \"src/skins/vector/css/**/*.css\" -o vector/bundle.css",
-    "//cache": "Note the -c 1 below due to https://code.google.com/p/chromium/issues/detail?id=508270",
-    "start": "parallelshell \"npm run start:js\" \"npm run start:skins:css\" \"http-server -c 1 vector\"",
-    "clean": "rimraf lib vector/bundle.css vector/bundle.js vector/bundle.js.map",
-    "prepublish": "npm run build:css && npm run build:compile"
+    "url": "https://github.com/Chillcapped/Anona.chat"
   },
   "dependencies": {
+    "bluebird": "^3.1.5",
+    "body-parser": "^1.14.2",
     "classnames": "^2.1.2",
+    "client-sessions": "^0.7.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
     "filesize": "^3.1.2",
     "flux": "~2.0.3",
     "linkifyjs": "^2.0.0-beta.4",
     "matrix-js-sdk": "^0.3.0",
     "matrix-react-sdk": "^0.0.2",
+    "morgan": "^1.6.1",
+    "node-uuid": "^1.4.7",
     "q": "^1.4.1",
     "react": "^0.13.3",
-    "react-loader": "^1.4.0"
+    "react-loader": "^1.4.0",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
