@@ -5,8 +5,9 @@ var uuid = require('node-uuid');
 var settings = {
     name: 'anona.chat',
     port: 4000,
-    favicon: '/static/images/favicon.ico',
-    views: '/view/jade',
+    requestTimeout: 2000,
+    favicon: '/app/static/images/favicon.ico',
+    views: '/api/view/jade',
     renderEngine: 'jade',
     sessions: {
       cookieName: 'session',

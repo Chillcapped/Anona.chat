@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
-var authenticate = require('../modules/authenticate');
+var user = require('../modules/user');
 
 /**
  * @api {get} /chat/authenticate/guest Autheticate New Guest User
@@ -24,8 +24,8 @@ var authenticate = require('../modules/authenticate');
  *       }
  *     }
  */
-router.get('/chat/authenticate/guest', function(req, res) {
-  authenticate.guest()
+router.get('/profile', function(req, res) {
+  user.getProfile(req.cookies.user, req.cookies.access)
   .then(function(result){
     res.json(result);
   })

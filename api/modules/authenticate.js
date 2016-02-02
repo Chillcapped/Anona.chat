@@ -11,6 +11,7 @@ var displayName = require('./name');
 var rooms = require('./room');
 
 // Authenticate Guest User
+// Returns Access Token, Room, Member Count
 exports.guest = function(){
   return new Promise(function(resolve, reject) {
     var user = {};
@@ -33,8 +34,25 @@ exports.guest = function(){
     })
     // Join User to Assigned Lobby
     .then(function(result){
-      return rooms.join(result.room, user.token)
+      user.room = {  id: result.room  }
+      return rooms.join(user.room.id, user.token)
       return result;
+    })
+    // Get Intial Room Data
+    .then(function(result){
+      return rooms.getInitialSync(user.room.id, user.token);
+    })
+    // Parse
+    .then(function(result){
+      user.room['members'] = result.presence.length;
+      user.room['messages'] = result.messages;
+      return rooms.parseState(result.state);
+    })
+    // Add Member Count to User Object
+    .then(function(result){
+      user.room['aliases'] = result.aliases;
+      console.log(result);
+      return true;
     })
     // Return User Object
     .then(function(result){

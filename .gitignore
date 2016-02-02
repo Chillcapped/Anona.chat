@@ -1,3 +1,4 @@
 node_modules
 vector/bundle.*
 lib
+app/static/bower_components/
